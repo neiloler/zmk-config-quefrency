@@ -4,16 +4,21 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "quefrency.dtsi"
+#include "quefrency_60.dtsi"
+
+&default_transform {
+    col-offset = <7>;
+};
 
 / {
-    /* This kscan is for the 60% left half without macro keys the
-     * macro pad layout may require different column and row pins
+
+    /* This is setup for the 60% right board!
      */
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
         diode-direction = "col2row";
+
 
 
         col-gpios

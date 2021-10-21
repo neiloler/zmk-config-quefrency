@@ -1,6 +1,6 @@
 file_format: "1"
-id: quefrency
-name: Quefrency Rev. 1
+id: quefrency_60
+name: Quefrency 60% Rev. 1
 type: shield
 url: https://github.com/keebio/quefrency-rev1-pcb
 requires: [pro_micro]
@@ -8,5 +8,5 @@ features:
   - keys
   - encoder
 siblings:
-  - quenfrency_left
-  - quenfrency_right
+  - quenfrency_60_left
+  - quenfrency_60_right
