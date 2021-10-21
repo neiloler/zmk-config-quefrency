@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
       - name: Cache west modules
         uses: actions/cache@v2
         env:
@@ -27,34 +28,45 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      
       - name: West Init
         run: west init -l config
+      
       - name: West Update
         run: west update
+      
       - name: West Zephyr export
         run: west zephyr-export
+      
       - name: West Build (Quefrency 60% Rev. 1 Left)
         run: west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=quefrency_60_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      
       - name: Quefrency 60% Rev. 1 DTS File
         if: ${{ always() }}
         run: cat -n build/zephyr/nice_nano_v2.dts.pre.tmp
-      - name: Quefrency Rev. 1 Left Kconfig file
+      
+      - name: Quefrency 60% Rev. 1 Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
+      
       - name: Rename zmk.uf2
         run: cp build/zephyr/zmk.uf2 quefrency_60_left_nice_nano_v2.uf2
+      
       - name: Archive (Quefrency 60% Rev. 1 Left)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
           path: quefrency_60_left_nice_nano_v2.uf2
-      - name: West Build (Quefrency Rev. 1 Right)
+      
+      - name: West Build (Quefrency 60% Rev. 1 Right)
         run: west build --pristine -s zmk/app -b nice_nano_v2 -- -DSHIELD=quefrency_60_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: Quefrency Rev. 1 Right Kconfig file
+      - name: Quefrency 60% Rev. 1 Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
+      
       - name: Rename zmk.uf2
         run: cp build/zephyr/zmk.uf2 quefrency_60_right_nice_nano_v2.uf2
-      - name: Archive (Quefrency 605 Rev. 1 Right)
+      
+      - name: Archive (Quefrency 60% Rev. 1 Right)
         uses: actions/upload-artifact@v2
         with:
           name: firmware
