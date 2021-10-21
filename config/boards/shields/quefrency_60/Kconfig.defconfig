@@ -5,7 +5,7 @@
 if SHIELD_QUEFRENCY_60_LEFT
 
 config ZMK_KEYBOARD_NAME
-	default "Quefrency 60% left"
+	default "Quefrency60%lft"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
@@ -15,7 +15,7 @@ endif
 if SHIELD_QUEFRENCY_60_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "Quefrency 60% right"
+	default "Quefrency60%rgt"
 
 endif
 
